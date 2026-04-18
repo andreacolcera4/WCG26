@@ -1,19 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test dati</title>
+</head>
+
+<body>
+
+<h1>Test</h1>
+
+<div id="output">Caricamento...</div>
+
 <script>
 fetch("https://api.sheetbest.com/sheets/0be25ba0-595f-4b5c-a4ff-0c1720066212")
-  .then(res => res.json())
-  .then(data => {
+  .then(function(res) {
+    return res.json();
+  })
+  .then(function(data) {
 
-    console.log(data); // debug
+    let html = "";
 
-    let html = "<h2>Classifica</h2>";
-
-    data.forEach(r => {
-      html += `<p>${JSON.stringify(r)}</p>`;
+    data.forEach(function(r) {
+      html += "<p>" + JSON.stringify(r) + "</p>";
     });
 
     document.getElementById("output").innerHTML = html;
   })
-  .catch(err => {
-    document.getElementById("output").innerHTML = "Errore: " + err;
+  .catch(function(err) {
+    document.getElementById("output").innerHTML = "ERRORE: " + err;
   });
 </script>
+
+</body>
+</html>
