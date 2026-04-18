@@ -18,13 +18,39 @@ fetch("https://api.sheetbest.com/sheets/0be25ba0-595f-4b5c-a4ff-0c1720066212")
   })
   .then(function(data) {
 
-    let html = "";
+    .then(function(data) {
 
-    data.forEach(function(r) {
-      html += "<p>" + JSON.stringify(r) + "</p>";
-    });
+  let html = "<h2>Classifica</h2>";
+  html += "<table border='1' style='width:100%; border-collapse: collapse;'>";
 
-    document.getElementById("output").innerHTML = html;
+  // intestazioni
+  html += "<tr>";
+  html += "<th>Andrea</th>";
+  html += "<th>Nazionale</th>";
+  html += "<th>Risultato</th>";
+  html += "<th>GF</th>";
+  html += "<th>GS</th>";
+  html += "<th>Clean Sheet</th>";
+  html += "<th>Totale</th>";
+  html += "</tr>";
+
+  // righe
+  data.forEach(function(r) {
+    html += "<tr>";
+    html += "<td>" + r["Andrea"] + "</td>";
+    html += "<td>" + r["Nazionale"] + "</td>";
+    html += "<td>" + r["risultato"] + "</td>";
+    html += "<td>" + r["gf"] + "</td>";
+    html += "<td>" + r["gs"] + "</td>";
+    html += "<td>" + r["cleen sheet"] + "</td>";
+    html += "<td>" + r["totale"] + "</td>";
+    html += "</tr>";
+  });
+
+  html += "</table>";
+
+  document.getElementById("output").innerHTML = html;
+})
   })
   .catch(function(err) {
     document.getElementById("output").innerHTML = "ERRORE: " + err;
