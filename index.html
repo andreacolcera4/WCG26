@@ -3,38 +3,17 @@ fetch("https://api.sheetbest.com/sheets/0be25ba0-595f-4b5c-a4ff-0c1720066212")
   .then(res => res.json())
   .then(data => {
 
-    let html = "<table border='1' style='width:100%; border-collapse: collapse;'>";
+    console.log(data); // debug
 
-    // intestazioni
-    html += `
-      <tr>
-        <th>Andrea</th>
-        <th>Nazionale</th>
-        <th>Risultato</th>
-        <th>GF</th>
-        <th>GS</th>
-        <th>Clean Sheet</th>
-        <th>Totale</th>
-      </tr>
-    `;
+    let html = "<h2>Classifica</h2>";
 
-    // righe
     data.forEach(r => {
-      html += `
-        <tr>
-          <td>${r["Andrea"]}</td>
-          <td>${r["Nazionale"]}</td>
-          <td>${r["risultato"]}</td>
-          <td>${r["gf"]}</td>
-          <td>${r["gs"]}</td>
-          <td>${r["cleen sheet"]}</td>
-          <td>${r["totale"]}</td>
-        </tr>
-      `;
+      html += `<p>${JSON.stringify(r)}</p>`;
     });
 
-    html += "</table>";
-
     document.getElementById("output").innerHTML = html;
+  })
+  .catch(err => {
+    document.getElementById("output").innerHTML = "Errore: " + err;
   });
 </script>
