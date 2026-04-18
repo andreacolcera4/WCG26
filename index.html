@@ -1,21 +1,40 @@
-<body>
-
-<h1>Classifica</h1>
-<div id="output">Caricamento...</div>
-
 <script>
-fetch("https://api.sheetbest.com/sheets/0be25ba0-595f-4b5c-a4ff-0c1720066212")
+fetch("INCOLLA_QUI_IL_TUO_LINK_API")
   .then(res => res.json())
   .then(data => {
-    let html = "";
 
+    let html = "<table border='1' style='width:100%; border-collapse: collapse;'>";
+
+    // intestazioni
+    html += `
+      <tr>
+        <th>Andrea</th>
+        <th>Nazionale</th>
+        <th>Risultato</th>
+        <th>GF</th>
+        <th>GS</th>
+        <th>Clean Sheet</th>
+        <th>Totale</th>
+      </tr>
+    `;
+
+    // righe
     data.forEach(r => {
-      html += `<p>${r.Nome} - ${r.Punti}</p>`;
+      html += `
+        <tr>
+          <td>${r["Andrea"]}</td>
+          <td>${r["Nazionale"]}</td>
+          <td>${r["risultato"]}</td>
+          <td>${r["gf"]}</td>
+          <td>${r["gs"]}</td>
+          <td>${r["cleen sheet"]}</td>
+          <td>${r["totale"]}</td>
+        </tr>
+      `;
     });
+
+    html += "</table>";
 
     document.getElementById("output").innerHTML = html;
   });
 </script>
-
-</body>
-</html>
