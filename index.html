@@ -1,14 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Il mio sito</title>
-</head>
-
 <body>
 
-<h1>Ciao 👋</h1>
-<p>Il mio sito è online!</p>
+<h1>Classifica</h1>
+<div id="output">Caricamento...</div>
+
+<script>
+fetch("https://api.sheetbest.com/sheets/0be25ba0-595f-4b5c-a4ff-0c1720066212/tabs/DISPLAYG1")
+  .then(res => res.json())
+  .then(data => {
+    let html = "";
+
+    data.forEach(r => {
+      html += `<p>${r.Nome} - ${r.Punti}</p>`;
+    });
+
+    document.getElementById("output").innerHTML = html;
+  });
+</script>
 
 </body>
 </html>
